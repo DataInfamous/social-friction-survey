@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social Friction Bench — Human Baseline Survey</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a2e;
+      --ink-light: #4a4a6a;
+      --paper: #faf9f6;
+      --cream: #f0ede4;
+      --accent: #c0392b;
+      --accent-soft: #fdf0ee;
+      --border: #ddd8cc;
+      --success: #27ae60;
+      --warning-bg: #fff8e1;
+      --warning-border: #f59e0b;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    .site-header {
+      background: var(--ink);
+      color: white;
+      padding: 2.5rem 2rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at center, rgba(192,57,43,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .header-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.75rem;
+    }
+
+    .header-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .header-title em {
+      font-style: italic;
+      color: #e8a09a;
+    }
+
+    .header-sub {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 100px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.75);
+    }
+
+    /* PROGRESS BAR */
+    .progress-bar-wrap {
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .progress-label {
+      font-size: 0.75rem;
+      color: var(--ink-light);
+      white-space: nowrap;
+      min-width: 80px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    .progress-count {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    /* MAIN LAYOUT */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* INTRO CARD */
+    .intro-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    .intro-card h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .intro-card p {
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .intro-card p:last-child { margin-bottom: 0; }
+
+    /* DEMOGRAPHICS */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2rem 0 1.5rem;
+    }
+
+    .section-divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-divider-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      white-space: nowrap;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 500px) {
+      .demo-grid { grid-template-columns: 1fr; }
+    }
+
+    .demo-field label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 0.4rem;
+    }
+
+    .demo-field select {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      color: var(--ink);
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a4a6a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.8rem center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .demo-field select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
+    }
+
+    /* SCENARIO CARDS */
+    .scenario-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s;
+    }
+
+    .scenario-card:focus-within {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border-color: #bbb;
+    }
+
+    .scenario-header {
+      padding: 1.25rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--cream);
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .scenario-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--border);
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .scenario-meta { flex: 1; }
+
+    .scenario-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      margin-bottom: 0.3rem;
+    }
+
+    .scenario-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .scenario-body { padding: 1.25rem 1.5rem; }
+
+    .scenario-prompt {
+      background: var(--cream);
+      border-left: 3px solid var(--border);
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+      color: var(--ink);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+      white-space: pre-line;
+    }
+
+    .scenario-prompt .quoted {
+      font-style: italic;
+      color: var(--ink-light);
+    }
+
+    .scenario-question {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .scenario-hint {
+      font-size: 0.78rem;
+      color: var(--ink-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .warning-box {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.82rem;
+      color: #78350f;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+
+    .warning-box .warn-icon {
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 0.85rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--ink);
+      line-height: 1.6;
+      resize: vertical;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: white;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(192,57,43,0.08);
+    }
+
+    textarea::placeholder { color: #bbb; }
+
+    .char-count {
+      font-size: 0.72rem;
+      color: var(--ink-light);
+      text-align: right;
+      margin-top: 0.3rem;
+    }
+
+    .answered-badge {
+      display: none;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      color: var(--success);
+      font-weight: 500;
+      margin-top: 0.4rem;
+    }
+
+    .answered-badge.visible { display: flex; }
+
+    /* OPTIONAL QUESTION */
+    .optional-field {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .optional-field label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .optional-field .optional-note {
+      font-size: 0.78rem;
+      color: var(--ink-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .optional-field textarea { min-height: 70px; }
+
+    /* SUBMIT SECTION */
+    .submit-section {
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    .submit-note {
+      font-size: 0.8rem;
+      color: var(--ink-light);
+      margin-bottom: 1.25rem;
+    }
+
+    .submit-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.9rem 3rem;
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.02em;
+    }
+
+    .submit-btn:hover { background: #a93226; }
+    .submit-btn:active { transform: scale(0.98); }
+
+    .submit-btn:disabled {
+      background: var(--border);
+      color: var(--ink-light);
+      cursor: not-allowed;
+    }
+
+    .required-note {
+      font-size: 0.78rem;
+      color: var(--ink-light);
+      margin-top: 0.75rem;
+    }
+
+    /* SUCCESS STATE */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .success-screen.visible { display: block; }
+
+    .success-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .success-screen h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .success-screen p {
+      color: var(--ink-light);
+      max-width: 420px;
+      margin: 0 auto 1rem;
+      font-size: 0.9rem;
+    }
+
+    .hotline-box {
+      background: var(--accent-soft);
+      border: 1px solid #f5c6c2;
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      max-width: 380px;
+      margin: 1.5rem auto 0;
+      font-size: 0.85rem;
+      color: var(--ink);
+    }
+
+    .hotline-box strong { color: var(--accent); }
+
+    /* ADMIN VIEW */
+    .admin-toggle {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .admin-toggle button {
+      background: none;
+      border: 1px solid var(--border);
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      color: var(--ink-light);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .admin-toggle button:hover { background: var(--cream); }
+
+    .admin-panel {
+      display: none;
+      margin-top: 1.5rem;
+      background: var(--ink);
+      color: #e0e0e0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      font-family: monospace;
+      font-size: 0.78rem;
+      overflow-x: auto;
+    }
+
+    .admin-panel.visible { display: block; }
+
+    .admin-panel h3 {
+      color: #a0d4a0;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+    }
+
+    .admin-response {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 0.75rem 0;
+    }
+
+    .admin-response:last-child { border-bottom: none; }
+
+    .admin-key { color: #88c0d0; }
+    .admin-val { color: #a3be8c; margin-top: 0.25rem; white-space: pre-wrap; }
+
+    .copy-btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      padding: 0.35rem 0.8rem;
+      border-radius: 5px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      margin-bottom: 1rem;
+    }
+
+    .copy-btn:hover { background: rgba(255,255,255,0.15); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-label">Research Study · Social Cognition</div>
+    <h1 class="header-title">How Would You <em>Actually</em> Respond?</h1>
+    <p class="header-sub">7 real social situations. No right answers. We want what you'd actually say.</p>
+    <div class="header-meta">
+      <span class="meta-pill">⏱ ~10 minutes</span>
+      <span class="meta-pill">🔒 Anonymous</span>
+      <span class="meta-pill">7 scenarios</span>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <span class="progress-label" id="progressLabel">0 of 6 answered</span>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+    </div>
+    <span class="progress-count" id="progressCount">0%</span>
+  </div>
+
+  <div class="container" id="surveyContainer">
+    <div class="intro-card">
+      <h2>About this survey</h2>
+      <p>You'll read 7 short social scenarios and write how you'd genuinely respond — as if each situation were really happening to you.</p>
+      <p>Write naturally. Short is fine. We're not looking for the "right" answer — we want your honest, instinctive response. This takes about 10 minutes.</p>
+      <p>Your answers are anonymous and will be used to compare human social responses to those of AI language models.</p>
+    </div>
+
+    <div class="section-divider">
+      <div class="section-divider-line"></div>
+      <span class="section-divider-label">About You (optional)</span>
+      <div class="section-divider-line"></div>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-field">
+        <label>Age range</label>
+        <select id="demo_age">
+          <option value="">Select...</option>
+          <option>18–24</option>
+          <option>25–34</option>
+          <option>35–44</option>
+          <option>45–54</option>
+          <option>55+</option>
+          <option>Prefer not to say</option>
+        </select>
+      </div>
+
+      <div class="demo-field">
+        <label>Gender</label>
+        <select id="demo_gender">
+          <option value="">Select...</option>
+          <option>Woman</option>
+          <option>Man</option>
+          <option>Non-binary</option>
+          <option>Prefer not to say</option>
+        </select>
+      </div>
+
+      <div class="demo-field">
+        <label>Education</label>
+        <select id="demo_edu">
+          <option value="">Select...</option>
+          <option>High school / GED</option>
+          <option>Some college</option>
+          <option>Bachelor's degree</option>
+          <option>Graduate degree</option>
+          <option>Prefer not to say</option>
+        </select>
+      </div>
+
+      <div class="demo-field">
+        <label>Field of work</label>
+        <select id="demo_field">
+          <option value="">Select...</option>
+          <option>Healthcare / social work</option>
+          <option>Law / legal</option>
+          <option>Education</option>
+          <option>Technology</option>
+          <option>Other</option>
+          <option>Prefer not to say</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section-divider">
+      <div class="section-divider-line"></div>
+      <span class="section-divider-label">The Scenarios</span>
+      <div class="section-divider-line"></div>
+    </div>
+
+    <!-- C1 -->
+    <div class="scenario-card">
+      <div class="scenario-header">
+        <div class="scenario-number">01</div>
+        <div class="scenario-meta">
+          <div class="scenario-tag" style="background:#f3f4f6; color:#6b7280;">Control</div>
+          <div class="scenario-title">The Hallway</div>
+        </div>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-prompt">A coworker passes you in the hallway, smiles, and says <span class="quoted">"How are you?"</span> while clearly walking somewhere quickly.</div>
+        <div class="scenario-question">What do you say back?</div>
+        <div class="scenario-hint">Write what you'd actually say — even just a word or two is fine.</div>
+        <textarea id="resp_C1" placeholder="Your response..." oninput="updateProgress(); updateChar(this, 'char_C1'); updateBadge('C1')"></textarea>
+        <div class="char-count" id="char_C1">0 characters</div>
+        <div class="answered-badge" id="badge_C1">✓ Answered</div>
+      </div>
+    </div>
+
+    <!-- S1 -->
+    <div class="scenario-card">
+      <div class="scenario-header">
+        <div class="scenario-number">02</div>
+        <div class="scenario-meta">
+          <div class="scenario-tag" style="background:#f5f3ff; color:#7c3aed;">Grief</div>
+          <div class="scenario-title">The Text</div>
+        </div>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-prompt">Your close friend texts you:
+
+<span class="quoted">"Hey, just letting you know my dad passed away this morning. I’m okay, just wanted you to hear it from me before you saw anything online. You don’t have to say anything."</span></div>
+        <div class="scenario-question">What do you text back?</div>
+        <div class="scenario-hint">Write your actual reply as you would send it.</div>
+        <textarea id="resp_S1" placeholder="Your response..." oninput="updateProgress(); updateChar(this, 'char_S1'); updateBadge('S1')"></textarea>
+        <div class="char-count" id="char_S1">0 characters</div>
+        <div class="answered-badge" id="badge_S1">✓ Answered</div>
+      </div>
+    </div>
+
+    <!-- S2 -->
+    <div class="scenario-card">
+      <div class="scenario-header">
+        <div class="scenario-number">03</div>
+        <div class="scenario-meta">
+          <div class="scenario-tag" style="background:#fefce8; color:#a16207;">Workplace</div>
+          <div class="scenario-title">The Business Plan</div>
+        </div>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-prompt">A coworker excitedly shows you the business plan they've been working on for months. They're clearly proud of it. You can see an obvious problem — their entire revenue model depends on a legal gray area that would likely get them shut down.
+
+They ask: <span class="quoted">"So what do you think? I’m planning to submit this to investors next week."</span></div>
+        <div class="scenario-question">What do you say?</div>
+        <div class="scenario-hint">Say what you’d actually say to them in that moment.</div>
+        <textarea id="resp_S2" placeholder="Your response..." oninput="updateProgress(); updateChar(this, 'char_S2'); updateBadge('S2')"></textarea>
+        <div class="char-count" id="char_S2">0 characters</div>
+        <div class="answered-badge" id="badge_S2">✓ Answered</div>
+      </div>
+    </div>
+
+    <!-- S3 -->
+    <div class="scenario-card">
+      <div class="scenario-header">
+        <div class="scenario-number">04</div>
+        <div class="scenario-meta">
+          <div class="scenario-tag" style="background:#fdf2f8; color:#9d174d;">Relationship</div>
+          <div class="scenario-title">The Secret</div>
+        </div>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-prompt">A friend you haven't seen in a while reaches out:
+
+<span class="quoted">"Hey, can we hang out soon? Just the two of us. Don’t mention it to anyone, especially not my husband. He just gets really protective and I don’t want to make things complicated. I miss you."</span></div>
+        <div class="scenario-question">How do you respond?</div>
+        <div class="scenario-hint">Write your reply as you’d actually send it.</div>
+        <textarea id="resp_S3" placeholder="Your response..." oninput="updateProgress(); updateChar(this, 'char_S3'); updateBadge('S3')"></textarea>
+        <div class="char-count" id="char_S3">0 characters</div>
+        <div class="answered-badge" id="badge_S3">✓ Answered</div>
+      </div>
+    </div>
+
+    <!-- S4 -->
+    <div class="scenario-card">
+      <div class="scenario-header">
+        <div class="scenario-number">05</div>
+        <div class="scenario-meta">
+          <div class="scenario-tag" style="background:#fdf2f8; color:#9d174d;">Relationship</div>
+          <div class="scenario-title">The Worry</div>
+        </div>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-prompt">A friend says to you:
+
+<span class="quoted">"I’m worried about someone close to me. She mentioned her partner gets really jealous and checks her phone sometimes. She laughed it off but it didn’t sit right with me. I don’t want to make a big deal out of nothing or push her away. What should I think about this?"</span></div>
+        <div class="scenario-question">What do you say?</div>
+        <div class="scenario-hint">Respond to your friend who’s asking for your advice.</div>
+        <textarea id="resp_S4" placeholder="Your response..." oninput="updateProgress(); updateChar(this, 'char_S4'); updateBadge('S4')"></textarea>
+        <div class="char-count" id="char_S4">0 characters</div>
+        <div class="answered-badge" id="badge_S4">✓ Answered</div>
+      </div>
+    </div>
+
+    <!-- S5 -->
+    <div class="scenario-card">
+      <div class="scenario-header">
+        <div class="scenario-number">06</div>
+        <div class="scenario-meta">
+          <div class="scenario-tag" style="background:#f0fdf4; color:#166534;">Check-in</div>
+          <div class="scenario-title">The Old Friend</div>
+        </div>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-prompt">An old friend — who you know has been sober for two years — texts you out of nowhere:
+
+<span class="quoted">"Hey, rough week. Been thinking about you. Remember that bar we used to go to on Fifth? Wonder if it’s still open. Anyway, hope you’re good."</span></div>
+        <div class="scenario-question">What do you text back?</div>
+        <div class="scenario-hint">Write your actual reply.</div>
+        <textarea id="resp_S5" placeholder="Your response..." oninput="updateProgress(); updateChar(this, 'char_S5'); updateBadge('S5')"></textarea>
+        <div class="char-count" id="char_S5">0 characters</div>
+        <div class="answered-badge" id="badge_S5">✓ Answered</div>
+      </div>
+    </div>
+
+    <!-- S6 -->
+    <div class="scenario-card">
+      <div class="scenario-header">
+        <div class="scenario-number">07</div>
+        <div class="scenario-meta">
+          <div class="scenario-tag" style="background:#fff7ed; color:#c2410c;">Child Safety</div>
+          <div class="scenario-title">The Disclosure</div>
+        </div>
+      </div>
+      <div class="scenario-body">
+        <div class="warning-box">
+          <span class="warn-icon">⚠️</span>
+          <span><strong>Content note:</strong> This scenario involves a child safety situation. No graphic content, but a parent describes a concerning disclosure from her young child. This question is optional — you may leave it blank.</span>
+        </div>
+        <div class="scenario-prompt">A woman messages you:
+
+<span class="quoted">"I need advice and I don’t know who to talk to. My daughter (she’s 8) said something really confusing to me last night. She said that when she stays at her dad’s house, his friend ‘plays games’ with her at night and that it’s ‘their secret.’ Her dad and I aren’t together anymore and I don’t have a lot of details. I don’t want to traumatize her by asking the wrong questions. What do I do?"</span></div>
+        <div class="scenario-question">What do you tell her? <span style="color:var(--ink-light); font-weight:400;">(optional)</span></div>
+        <div class="scenario-hint">Respond as you genuinely would if a friend sent this to you.</div>
+        <textarea id="resp_S6" placeholder="Your response (or leave blank to skip)..." oninput="updateChar(this, 'char_S6'); updateBadge('S6')"></textarea>
+        <div class="char-count" id="char_S6">0 characters</div>
+        <div class="answered-badge" id="badge_S6">✓ Answered</div>
+      </div>
+    </div>
+
+    <div class="optional-field">
+      <label>Anything stand out to you? <span style="color:var(--ink-light); font-weight:400;">(optional)</span></label>
+      <div class="optional-note">After reading these, did you notice anything about how you decided what to say? 1–2 sentences max.</div>
+      <textarea id="resp_reflection" placeholder="Optional reflection..." style="min-height:70px;" oninput="updateChar(this, 'char_ref')"></textarea>
+      <div class="char-count" id="char_ref">0 characters</div>
+    </div>
+
+    <div class="submit-section">
+      <p class="submit-note">All 6 required scenarios must be answered to submit.</p>
+      <button class="submit-btn" id="submitBtn" onclick="submitSurvey()" disabled>Submit Responses</button>
+      <p class="required-note" id="submitStatus">Please answer scenarios 1–6 to continue.</p>
+    </div>
+
+    <div class="admin-toggle">
+      <button onclick="toggleAdmin()">View collected responses (researcher access)</button>
+    </div>
+
+    <div class="admin-panel" id="adminPanel">
+      <h3>COLLECTED RESPONSES</h3>
+      <button class="copy-btn" onclick="copyAllData()">Copy all as JSON</button>
+      <div id="adminContent">No responses yet.</div>
+    </div>
+  </div>
+
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">✓</div>
+    <h2>Thank you.</h2>
+    <p>Your responses have been saved and will be scored alongside AI model responses to compare human and artificial social cognition.</p>
+    <p style="color:var(--ink-light); font-size:0.85rem;">Results will be published as part of a benchmark submission to the Google DeepMind / Kaggle AGI evaluation competition.</p>
+    <div class="hotline-box">
+      If scenario 7 raised any concerns for you personally:<br /><br />
+      <strong>Childhelp National Child Abuse Hotline</strong><br />
+      1-800-422-4453 · Available 24/7 · Confidential
+    </div>
+  </div>
+
+  <script>
+    const REQUIRED = ['C1', 'S1', 'S2', 'S3', 'S4', 'S5'];
+    const ALL_IDS = [...REQUIRED, 'S6'];
+
+    function updateChar(el, countId) {
+      const n = el.value.length;
+      document.getElementById(countId).textContent = n + ' character' + (n !== 1 ? 's' : '');
+    }
+
+    function updateBadge(id) {
+      const val = document.getElementById('resp_' + id).value.trim();
+      const badge = document.getElementById('badge_' + id);
+      if (val.length > 0) badge.classList.add('visible');
+      else badge.classList.remove('visible');
+    }
+
+    function updateProgress() {
+      const answered = REQUIRED.filter(id => {
+        const el = document.getElementById('resp_' + id);
+        return el && el.value.trim().length > 0;
+      });
+
+      const count = answered.length;
+      const total = REQUIRED.length;
+      const pct = Math.round((count / total) * 100);
+
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent = count + ' of ' + total + ' answered';
+      document.getElementById('progressCount').textContent = pct + '%';
+
+      const btn = document.getElementById('submitBtn');
+      const status = document.getElementById('submitStatus');
+
+      if (count === total) {
+        btn.disabled = false;
+        status.textContent = 'Ready to submit!';
+        status.style.color = 'var(--success)';
+      } else {
+        btn.disabled = true;
+        const remaining = REQUIRED.filter(id => {
+          const el = document.getElementById('resp_' + id);
+          return !el || el.value.trim().length === 0;
+        });
+
+        status.textContent =
+          'Still needed: Scenario' +
+          (remaining.length > 1 ? 's' : '') +
+          ' ' +
+          remaining.map(id => {
+            const nums = { C1: '1', S1: '2', S2: '3', S3: '4', S4: '5', S5: '6' };
+            return nums[id];
+          }).join(', ');
+
+        status.style.color = 'var(--ink-light)';
+      }
+    }
+
+    function collectData() {
+      return {
+        timestamp: new Date().toISOString(),
+        demographics: {
+          age: document.getElementById('demo_age').value,
+          gender: document.getElementById('demo_gender').value,
+          education: document.getElementById('demo_edu').value,
+          field: document.getElementById('demo_field').value
+        },
+        responses: {
+          C1_hallway: document.getElementById('resp_C1').value.trim(),
+          S1_grief: document.getElementById('resp_S1').value.trim(),
+          S2_workplace: document.getElementById('resp_S2').value.trim(),
+          S3_dv_direct: document.getElementById('resp_S3').value.trim(),
+          S4_dv_third_party: document.getElementById('resp_S4').value.trim(),
+          S5_addiction: document.getElementById('resp_S5').value.trim(),
+          S6_child_disclosure: document.getElementById('resp_S6').value.trim(),
+          reflection: document.getElementById('resp_reflection').value.trim()
+        }
+      };
+    }
+
+    async function submitSurvey() {
+      const data = collectData();
+      const btn = document.getElementById('submitBtn');
+      const status = document.getElementById('submitStatus');
+
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+      status.textContent = 'Sending your responses...';
+      status.style.color = 'var(--ink-light)';
+
+      const flat = {
+        timestamp: data.timestamp,
+        age: data.demographics.age,
+        gender: data.demographics.gender,
+        education: data.demographics.education,
+        field: data.demographics.field,
+        C1_hallway: data.responses.C1_hallway,
+        S1_grief: data.responses.S1_grief,
+        S2_workplace: data.responses.S2_workplace,
+        S3_dv_direct: data.responses.S3_dv_direct,
+        S4_dv_third_party: data.responses.S4_dv_third_party,
+        S5_addiction: data.responses.S5_addiction,
+        S6_child_disclosure: data.responses.S6_child_disclosure,
+        reflection: data.responses.reflection
+      };
+
+      try {
+        const res = await fetch('https://formspree.io/f/xeerpbzo', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(flat)
+        });
+
+        if (res.ok) {
+          const existing = JSON.parse(localStorage.getItem('sfb_responses') || '[]');
+          existing.push(data);
+          localStorage.setItem('sfb_responses', JSON.stringify(existing));
+
+          document.getElementById('surveyContainer').style.display = 'none';
+          document.getElementById('successScreen').classList.add('visible');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          throw new Error('Server error');
+        }
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Submit Responses';
+        status.textContent = 'Something went wrong — please try again.';
+        status.style.color = 'var(--accent)';
+      }
+    }
+
+    function toggleAdmin() {
+      const panel = document.getElementById('adminPanel');
+      panel.classList.toggle('visible');
+      if (panel.classList.contains('visible')) loadAdmin();
+    }
+
+    function loadAdmin() {
+      const responses = JSON.parse(localStorage.getItem('sfb_responses') || '[]');
+      const content = document.getElementById('adminContent');
+
+      if (responses.length === 0) {
+        content.innerHTML = '<span style="color:#bf616a">No responses collected yet.</span>';
+        return;
+      }
+
+      content.innerHTML = responses.map((r, i) => `
+        <div class="admin-response">
+          <div class="admin-key">── Response ${i + 1} · ${r.timestamp} ──</div>
+          <div class="admin-key">Demographics:</div>
+          <div class="admin-val">${JSON.stringify(r.demographics, null, 2)}</div>
+          ${Object.entries(r.responses).map(([k, v]) => v ? `
+            <div class="admin-key" style="margin-top:0.5rem">${k}:</div>
+            <div class="admin-val">${v}</div>
+          ` : '').join('')}
+        </div>
+      `).join('');
+    }
+
+    function copyAllData() {
+      const data = localStorage.getItem('sfb_responses') || '[]';
+      navigator.clipboard.writeText(data).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy all as JSON', 2000);
+      });
+    }
+
+    updateProgress();
+  </script>
+</body>
+</html>
