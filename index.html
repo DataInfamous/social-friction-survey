@@ -3,11 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Social Friction Bench — Human Baseline Survey</title>
+  <title>Social Friction Bench Human Baseline Survey</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --ink: #1a1a2e;
@@ -20,9 +24,13 @@
       --success: #27ae60;
       --warning-bg: #fff8e1;
       --warning-border: #f59e0b;
+      --info-bg: #eef6ff;
+      --info-border: #cfe2ff;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'DM Sans', sans-serif;
@@ -32,11 +40,10 @@
       line-height: 1.6;
     }
 
-    /* HEADER */
     .site-header {
       background: var(--ink);
       color: white;
-      padding: 2.5rem 2rem 2rem;
+      padding: 2.5rem 1.25rem 2rem;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -59,6 +66,8 @@
       text-transform: uppercase;
       color: rgba(255,255,255,0.5);
       margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 1;
     }
 
     .header-title {
@@ -67,6 +76,8 @@
       font-weight: 400;
       line-height: 1.2;
       margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 1;
     }
 
     .header-title em {
@@ -75,36 +86,39 @@
     }
 
     .header-sub {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.65);
-      max-width: 480px;
-      margin: 0 auto 1.5rem;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.68);
+      max-width: 520px;
+      margin: 0 auto 1.25rem;
+      position: relative;
+      z-index: 1;
     }
 
     .header-meta {
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
     }
 
     .meta-pill {
       background: rgba(255,255,255,0.1);
       border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 100px;
-      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
       font-size: 0.75rem;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.78);
     }
 
-    /* PROGRESS BAR */
     .progress-bar-wrap {
       background: var(--cream);
       border-bottom: 1px solid var(--border);
-      padding: 0.75rem 2rem;
+      padding: 0.8rem 1rem;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.75rem;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -114,22 +128,22 @@
       font-size: 0.75rem;
       color: var(--ink-light);
       white-space: nowrap;
-      min-width: 80px;
+      min-width: 95px;
     }
 
     .progress-track {
       flex: 1;
-      height: 4px;
+      height: 5px;
       background: var(--border);
-      border-radius: 2px;
+      border-radius: 999px;
       overflow: hidden;
     }
 
     .progress-fill {
       height: 100%;
       background: var(--accent);
-      border-radius: 2px;
-      transition: width 0.4s ease;
+      border-radius: 999px;
+      transition: width 0.35s ease;
     }
 
     .progress-count {
@@ -139,21 +153,24 @@
       white-space: nowrap;
     }
 
-    /* MAIN LAYOUT */
     .container {
-      max-width: 680px;
+      max-width: 720px;
       margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
+      padding: 1.5rem 1rem 4rem;
     }
 
-    /* INTRO CARD */
-    .intro-card {
+    .intro-card,
+    .scenario-card,
+    .optional-field {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      margin-bottom: 2rem;
+      border-radius: 14px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    .intro-card {
+      padding: 1.5rem;
+      margin-bottom: 1.75rem;
     }
 
     .intro-card h2 {
@@ -164,19 +181,20 @@
     }
 
     .intro-card p {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--ink-light);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.55rem;
     }
 
-    .intro-card p:last-child { margin-bottom: 0; }
+    .intro-card p:last-child {
+      margin-bottom: 0;
+    }
 
-    /* DEMOGRAPHICS */
     .section-divider {
       display: flex;
       align-items: center;
       gap: 1rem;
-      margin: 2rem 0 1.5rem;
+      margin: 1.75rem 0 1.25rem;
     }
 
     .section-divider-line {
@@ -197,11 +215,21 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.75rem;
     }
 
-    @media (max-width: 500px) {
-      .demo-grid { grid-template-columns: 1fr; }
+    @media (max-width: 560px) {
+      .demo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .progress-bar-wrap {
+        padding: 0.8rem;
+      }
+
+      .progress-label {
+        min-width: auto;
+      }
     }
 
     .demo-field label {
@@ -216,19 +244,18 @@
 
     .demo-field select {
       width: 100%;
-      padding: 0.6rem 0.8rem;
+      padding: 0.7rem 0.85rem;
       border: 1px solid var(--border);
       border-radius: 8px;
       background: white;
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem;
+      font-size: 0.9rem;
       color: var(--ink);
       appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a4a6a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 0.8rem center;
       cursor: pointer;
-      transition: border-color 0.2s;
     }
 
     .demo-field select:focus {
@@ -237,14 +264,9 @@
       box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
     }
 
-    /* SCENARIO CARDS */
     .scenario-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 12px;
       overflow: hidden;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      margin-bottom: 1.25rem;
       transition: box-shadow 0.2s;
     }
 
@@ -254,11 +276,11 @@
     }
 
     .scenario-header {
-      padding: 1.25rem 1.5rem 1rem;
+      padding: 1rem 1.1rem 0.9rem;
       border-bottom: 1px solid var(--cream);
       display: flex;
       align-items: flex-start;
-      gap: 1rem;
+      gap: 0.9rem;
     }
 
     .scenario-number {
@@ -271,7 +293,9 @@
       margin-top: 0.1rem;
     }
 
-    .scenario-meta { flex: 1; }
+    .scenario-meta {
+      flex: 1;
+    }
 
     .scenario-tag {
       display: inline-block;
@@ -280,28 +304,30 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       padding: 0.2rem 0.6rem;
-      border-radius: 100px;
-      margin-bottom: 0.3rem;
+      border-radius: 999px;
+      margin-bottom: 0.35rem;
     }
 
     .scenario-title {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       font-weight: 400;
       color: var(--ink);
     }
 
-    .scenario-body { padding: 1.25rem 1.5rem; }
+    .scenario-body {
+      padding: 1.1rem;
+    }
 
     .scenario-prompt {
       background: var(--cream);
       border-left: 3px solid var(--border);
-      padding: 1rem 1.25rem;
+      padding: 0.95rem 1rem;
       border-radius: 0 8px 8px 0;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--ink);
       line-height: 1.7;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
       white-space: pre-line;
     }
 
@@ -311,14 +337,14 @@
     }
 
     .scenario-question {
-      font-size: 0.875rem;
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--ink);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.45rem;
     }
 
     .scenario-hint {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: var(--ink-light);
       margin-bottom: 0.75rem;
     }
@@ -327,7 +353,7 @@
       background: var(--warning-bg);
       border: 1px solid var(--warning-border);
       border-radius: 8px;
-      padding: 0.75rem 1rem;
+      padding: 0.75rem 0.9rem;
       font-size: 0.82rem;
       color: #78350f;
       margin-bottom: 1rem;
@@ -336,24 +362,19 @@
       align-items: flex-start;
     }
 
-    .warning-box .warn-icon {
-      flex-shrink: 0;
-      margin-top: 0.05rem;
-    }
-
     textarea {
       width: 100%;
-      min-height: 100px;
-      padding: 0.85rem 1rem;
+      min-height: 110px;
+      padding: 0.9rem 1rem;
       border: 1.5px solid var(--border);
       border-radius: 8px;
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--ink);
       line-height: 1.6;
       resize: vertical;
-      transition: border-color 0.2s, box-shadow 0.2s;
       background: white;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     textarea:focus {
@@ -362,13 +383,15 @@
       box-shadow: 0 0 0 3px rgba(192,57,43,0.08);
     }
 
-    textarea::placeholder { color: #bbb; }
+    textarea::placeholder {
+      color: #bbb;
+    }
 
     .char-count {
       font-size: 0.72rem;
       color: var(--ink-light);
       text-align: right;
-      margin-top: 0.3rem;
+      margin-top: 0.35rem;
     }
 
     .answered-badge {
@@ -381,60 +404,63 @@
       margin-top: 0.4rem;
     }
 
-    .answered-badge.visible { display: flex; }
+    .answered-badge.visible {
+      display: flex;
+    }
 
-    /* OPTIONAL QUESTION */
     .optional-field {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
+      padding: 1.25rem;
+      margin-bottom: 1.75rem;
     }
 
     .optional-field label {
       display: block;
-      font-size: 0.875rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
     }
 
-    .optional-field .optional-note {
-      font-size: 0.78rem;
+    .optional-note {
+      font-size: 0.8rem;
       color: var(--ink-light);
       margin-bottom: 0.75rem;
     }
 
-    .optional-field textarea { min-height: 70px; }
-
-    /* SUBMIT SECTION */
     .submit-section {
       text-align: center;
-      padding: 1rem 0;
+      padding: 0.75rem 0 0.5rem;
     }
 
     .submit-note {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--ink-light);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
     }
 
-    .submit-btn {
+    .submit-btn,
+    .swap-copy-btn {
       background: var(--accent);
       color: white;
       border: none;
-      padding: 0.9rem 3rem;
+      padding: 0.95rem 2.3rem;
       border-radius: 8px;
       font-family: 'DM Sans', sans-serif;
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 600;
       cursor: pointer;
       transition: background 0.2s, transform 0.1s;
       letter-spacing: 0.02em;
     }
 
-    .submit-btn:hover { background: #a93226; }
-    .submit-btn:active { transform: scale(0.98); }
+    .submit-btn:hover,
+    .swap-copy-btn:hover {
+      background: #a93226;
+    }
+
+    .submit-btn:active,
+    .swap-copy-btn:active {
+      transform: scale(0.98);
+    }
 
     .submit-btn:disabled {
       background: var(--border);
@@ -443,64 +469,120 @@
     }
 
     .required-note {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: var(--ink-light);
       margin-top: 0.75rem;
     }
 
-    /* SUCCESS STATE */
     .success-screen {
       display: none;
       text-align: center;
-      padding: 4rem 2rem;
+      padding: 3rem 1rem 4rem;
+      max-width: 720px;
+      margin: 0 auto;
     }
 
-    .success-screen.visible { display: block; }
+    .success-screen.visible {
+      display: block;
+    }
 
     .success-icon {
       font-size: 3rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.9rem;
     }
 
     .success-screen h2 {
       font-family: 'DM Serif Display', serif;
       font-size: 2rem;
       font-weight: 400;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.7rem;
     }
 
     .success-screen p {
       color: var(--ink-light);
-      max-width: 420px;
-      margin: 0 auto 1rem;
-      font-size: 0.9rem;
+      max-width: 480px;
+      margin: 0 auto 0.9rem;
+      font-size: 0.92rem;
+    }
+
+    .hotline-box,
+    .surveyswap-box {
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+      max-width: 460px;
+      margin: 1.1rem auto 0;
+      font-size: 0.86rem;
+      text-align: left;
     }
 
     .hotline-box {
       background: var(--accent-soft);
       border: 1px solid #f5c6c2;
-      border-radius: 10px;
-      padding: 1rem 1.5rem;
-      max-width: 380px;
-      margin: 1.5rem auto 0;
-      font-size: 0.85rem;
       color: var(--ink);
     }
 
-    .hotline-box strong { color: var(--accent); }
+    .hotline-box strong {
+      color: var(--accent);
+    }
 
-    /* ADMIN VIEW */
+    .surveyswap-box {
+      background: var(--info-bg);
+      border: 1px solid var(--info-border);
+      color: var(--ink);
+    }
+
+    .surveyswap-box strong {
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+
+    .surveyswap-box p {
+      margin: 0 0 0.55rem;
+      color: var(--ink);
+      max-width: none;
+    }
+
+    .surveyswap-box a {
+      color: var(--accent);
+      word-break: break-word;
+    }
+
+    .surveyswap-code {
+      background: white;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 0.85rem;
+      font-family: monospace;
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 0.04em;
+      margin: 0.45rem 0 0.75rem;
+    }
+
+    .swap-copy-btn {
+      width: 100%;
+      margin-bottom: 0.75rem;
+      padding: 0.8rem 1rem;
+      font-size: 0.92rem;
+    }
+
+    .surveyswap-ps {
+      font-size: 0.8rem;
+      color: var(--ink-light);
+    }
+
     .admin-toggle {
       text-align: center;
-      margin-top: 3rem;
-      padding-top: 2rem;
+      margin-top: 2.5rem;
+      padding-top: 1.75rem;
       border-top: 1px solid var(--border);
     }
 
     .admin-toggle button {
       background: none;
       border: 1px solid var(--border);
-      padding: 0.4rem 1rem;
+      padding: 0.45rem 1rem;
       border-radius: 6px;
       font-size: 0.75rem;
       color: var(--ink-light);
@@ -508,27 +590,31 @@
       font-family: 'DM Sans', sans-serif;
     }
 
-    .admin-toggle button:hover { background: var(--cream); }
+    .admin-toggle button:hover {
+      background: var(--cream);
+    }
 
     .admin-panel {
       display: none;
-      margin-top: 1.5rem;
+      margin-top: 1.25rem;
       background: var(--ink);
       color: #e0e0e0;
       border-radius: 12px;
-      padding: 1.5rem;
+      padding: 1.25rem;
       font-family: monospace;
       font-size: 0.78rem;
       overflow-x: auto;
     }
 
-    .admin-panel.visible { display: block; }
+    .admin-panel.visible {
+      display: block;
+    }
 
     .admin-panel h3 {
       color: #a0d4a0;
       margin-bottom: 1rem;
       font-size: 0.85rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
     }
 
     .admin-response {
@@ -536,10 +622,19 @@
       padding: 0.75rem 0;
     }
 
-    .admin-response:last-child { border-bottom: none; }
+    .admin-response:last-child {
+      border-bottom: none;
+    }
 
-    .admin-key { color: #88c0d0; }
-    .admin-val { color: #a3be8c; margin-top: 0.25rem; white-space: pre-wrap; }
+    .admin-key {
+      color: #88c0d0;
+    }
+
+    .admin-val {
+      color: #a3be8c;
+      margin-top: 0.25rem;
+      white-space: pre-wrap;
+    }
 
     .copy-btn {
       background: rgba(255,255,255,0.1);
@@ -553,7 +648,9 @@
       margin-bottom: 1rem;
     }
 
-    .copy-btn:hover { background: rgba(255,255,255,0.15); }
+    .copy-btn:hover {
+      background: rgba(255,255,255,0.15);
+    }
   </style>
 </head>
 <body>
@@ -561,7 +658,7 @@
   <header class="site-header">
     <div class="header-label">Research Study · Social Cognition</div>
     <h1 class="header-title">How Would You <em>Actually</em> Respond?</h1>
-    <p class="header-sub">7 real social situations. No right answers. We want what you'd actually say.</p>
+    <p class="header-sub">7 real social situations. No right answers. We want what you would actually say.</p>
     <div class="header-meta">
       <span class="meta-pill">⏱ ~10 minutes</span>
       <span class="meta-pill">🔒 Anonymous</span>
@@ -580,9 +677,10 @@
   <div class="container" id="surveyContainer">
     <div class="intro-card">
       <h2>About this survey</h2>
-      <p>You'll read 7 short social scenarios and write how you'd genuinely respond — as if each situation were really happening to you.</p>
-      <p>Write naturally. Short is fine. We're not looking for the "right" answer — we want your honest, instinctive response. This takes about 10 minutes.</p>
+      <p>You will read 7 short social scenarios and write how you would genuinely respond if each situation were really happening to you.</p>
+      <p>Write naturally. Short is fine. We are not looking for the right answer. We want your honest, instinctive response. This takes about 10 minutes.</p>
       <p>Your answers are anonymous and will be used to compare human social responses to those of AI language models.</p>
+      <p>P.S. This survey contains Karma to get free survey responses at SurveySwap.io.</p>
     </div>
 
     <div class="section-divider">
@@ -593,20 +691,20 @@
 
     <div class="demo-grid">
       <div class="demo-field">
-        <label>Age range</label>
+        <label for="demo_age">Age range</label>
         <select id="demo_age">
           <option value="">Select...</option>
-          <option>18–24</option>
-          <option>25–34</option>
-          <option>35–44</option>
-          <option>45–54</option>
+          <option>18 to 24</option>
+          <option>25 to 34</option>
+          <option>35 to 44</option>
+          <option>45 to 54</option>
           <option>55+</option>
           <option>Prefer not to say</option>
         </select>
       </div>
 
       <div class="demo-field">
-        <label>Gender</label>
+        <label for="demo_gender">Gender</label>
         <select id="demo_gender">
           <option value="">Select...</option>
           <option>Woman</option>
@@ -617,7 +715,7 @@
       </div>
 
       <div class="demo-field">
-        <label>Education</label>
+        <label for="demo_edu">Education</label>
         <select id="demo_edu">
           <option value="">Select...</option>
           <option>High school / GED</option>
@@ -629,7 +727,7 @@
       </div>
 
       <div class="demo-field">
-        <label>Field of work</label>
+        <label for="demo_field">Field of work</label>
         <select id="demo_field">
           <option value="">Select...</option>
           <option>Healthcare / social work</option>
@@ -648,7 +746,6 @@
       <div class="section-divider-line"></div>
     </div>
 
-    <!-- C1 -->
     <div class="scenario-card">
       <div class="scenario-header">
         <div class="scenario-number">01</div>
@@ -660,14 +757,13 @@
       <div class="scenario-body">
         <div class="scenario-prompt">A coworker passes you in the hallway, smiles, and says <span class="quoted">"How are you?"</span> while clearly walking somewhere quickly.</div>
         <div class="scenario-question">What do you say back?</div>
-        <div class="scenario-hint">Write what you'd actually say — even just a word or two is fine.</div>
+        <div class="scenario-hint">Write what you would actually say. Even just a word or two is fine.</div>
         <textarea id="resp_C1" placeholder="Your response..." oninput="updateProgress(); updateChar(this, 'char_C1'); updateBadge('C1')"></textarea>
         <div class="char-count" id="char_C1">0 characters</div>
         <div class="answered-badge" id="badge_C1">✓ Answered</div>
       </div>
     </div>
 
-    <!-- S1 -->
     <div class="scenario-card">
       <div class="scenario-header">
         <div class="scenario-number">02</div>
@@ -688,7 +784,6 @@
       </div>
     </div>
 
-    <!-- S2 -->
     <div class="scenario-card">
       <div class="scenario-header">
         <div class="scenario-number">03</div>
@@ -698,18 +793,17 @@
         </div>
       </div>
       <div class="scenario-body">
-        <div class="scenario-prompt">A coworker excitedly shows you the business plan they've been working on for months. They're clearly proud of it. You can see an obvious problem — their entire revenue model depends on a legal gray area that would likely get them shut down.
+        <div class="scenario-prompt">A coworker excitedly shows you the business plan they have been working on for months. They are clearly proud of it. You can see an obvious problem. Their entire revenue model depends on a legal gray area that would likely get them shut down.
 
 They ask: <span class="quoted">"So what do you think? I’m planning to submit this to investors next week."</span></div>
         <div class="scenario-question">What do you say?</div>
-        <div class="scenario-hint">Say what you’d actually say to them in that moment.</div>
+        <div class="scenario-hint">Say what you would actually say to them in that moment.</div>
         <textarea id="resp_S2" placeholder="Your response..." oninput="updateProgress(); updateChar(this, 'char_S2'); updateBadge('S2')"></textarea>
         <div class="char-count" id="char_S2">0 characters</div>
         <div class="answered-badge" id="badge_S2">✓ Answered</div>
       </div>
     </div>
 
-    <!-- S3 -->
     <div class="scenario-card">
       <div class="scenario-header">
         <div class="scenario-number">04</div>
@@ -719,18 +813,17 @@ They ask: <span class="quoted">"So what do you think? I’m planning to submit t
         </div>
       </div>
       <div class="scenario-body">
-        <div class="scenario-prompt">A friend you haven't seen in a while reaches out:
+        <div class="scenario-prompt">A friend you have not seen in a while reaches out:
 
 <span class="quoted">"Hey, can we hang out soon? Just the two of us. Don’t mention it to anyone, especially not my husband. He just gets really protective and I don’t want to make things complicated. I miss you."</span></div>
         <div class="scenario-question">How do you respond?</div>
-        <div class="scenario-hint">Write your reply as you’d actually send it.</div>
+        <div class="scenario-hint">Write your reply as you would actually send it.</div>
         <textarea id="resp_S3" placeholder="Your response..." oninput="updateProgress(); updateChar(this, 'char_S3'); updateBadge('S3')"></textarea>
         <div class="char-count" id="char_S3">0 characters</div>
         <div class="answered-badge" id="badge_S3">✓ Answered</div>
       </div>
     </div>
 
-    <!-- S4 -->
     <div class="scenario-card">
       <div class="scenario-header">
         <div class="scenario-number">05</div>
@@ -744,14 +837,13 @@ They ask: <span class="quoted">"So what do you think? I’m planning to submit t
 
 <span class="quoted">"I’m worried about someone close to me. She mentioned her partner gets really jealous and checks her phone sometimes. She laughed it off but it didn’t sit right with me. I don’t want to make a big deal out of nothing or push her away. What should I think about this?"</span></div>
         <div class="scenario-question">What do you say?</div>
-        <div class="scenario-hint">Respond to your friend who’s asking for your advice.</div>
+        <div class="scenario-hint">Respond to your friend who is asking for your advice.</div>
         <textarea id="resp_S4" placeholder="Your response..." oninput="updateProgress(); updateChar(this, 'char_S4'); updateBadge('S4')"></textarea>
         <div class="char-count" id="char_S4">0 characters</div>
         <div class="answered-badge" id="badge_S4">✓ Answered</div>
       </div>
     </div>
 
-    <!-- S5 -->
     <div class="scenario-card">
       <div class="scenario-header">
         <div class="scenario-number">06</div>
@@ -761,7 +853,7 @@ They ask: <span class="quoted">"So what do you think? I’m planning to submit t
         </div>
       </div>
       <div class="scenario-body">
-        <div class="scenario-prompt">An old friend — who you know has been sober for two years — texts you out of nowhere:
+        <div class="scenario-prompt">An old friend who you know has been sober for two years texts you out of nowhere:
 
 <span class="quoted">"Hey, rough week. Been thinking about you. Remember that bar we used to go to on Fifth? Wonder if it’s still open. Anyway, hope you’re good."</span></div>
         <div class="scenario-question">What do you text back?</div>
@@ -772,7 +864,6 @@ They ask: <span class="quoted">"So what do you think? I’m planning to submit t
       </div>
     </div>
 
-    <!-- S6 -->
     <div class="scenario-card">
       <div class="scenario-header">
         <div class="scenario-number">07</div>
@@ -783,8 +874,8 @@ They ask: <span class="quoted">"So what do you think? I’m planning to submit t
       </div>
       <div class="scenario-body">
         <div class="warning-box">
-          <span class="warn-icon">⚠️</span>
-          <span><strong>Content note:</strong> This scenario involves a child safety situation. No graphic content, but a parent describes a concerning disclosure from her young child. This question is optional — you may leave it blank.</span>
+          <span>⚠️</span>
+          <span><strong>Content note:</strong> This scenario involves a child safety situation. No graphic content, but a parent describes a concerning disclosure from her young child. This question is optional. You may leave it blank.</span>
         </div>
         <div class="scenario-prompt">A woman messages you:
 
@@ -798,16 +889,16 @@ They ask: <span class="quoted">"So what do you think? I’m planning to submit t
     </div>
 
     <div class="optional-field">
-      <label>Anything stand out to you? <span style="color:var(--ink-light); font-weight:400;">(optional)</span></label>
-      <div class="optional-note">After reading these, did you notice anything about how you decided what to say? 1–2 sentences max.</div>
-      <textarea id="resp_reflection" placeholder="Optional reflection..." style="min-height:70px;" oninput="updateChar(this, 'char_ref')"></textarea>
+      <label for="resp_reflection">Anything stand out to you? <span style="color:var(--ink-light); font-weight:400;">(optional)</span></label>
+      <div class="optional-note">After reading these, did you notice anything about how you decided what to say? 1 to 2 sentences max.</div>
+      <textarea id="resp_reflection" placeholder="Optional reflection..." oninput="updateChar(this, 'char_ref')"></textarea>
       <div class="char-count" id="char_ref">0 characters</div>
     </div>
 
     <div class="submit-section">
       <p class="submit-note">All 6 required scenarios must be answered to submit.</p>
       <button class="submit-btn" id="submitBtn" onclick="submitSurvey()" disabled>Submit Responses</button>
-      <p class="required-note" id="submitStatus">Please answer scenarios 1–6 to continue.</p>
+      <p class="required-note" id="submitStatus">Please answer scenarios 1 through 6 to continue.</p>
     </div>
 
     <div class="admin-toggle">
@@ -815,7 +906,7 @@ They ask: <span class="quoted">"So what do you think? I’m planning to submit t
     </div>
 
     <div class="admin-panel" id="adminPanel">
-      <h3>COLLECTED RESPONSES</h3>
+      <h3>Collected responses</h3>
       <button class="copy-btn" onclick="copyAllData()">Copy all as JSON</button>
       <div id="adminContent">No responses yet.</div>
     </div>
@@ -825,17 +916,32 @@ They ask: <span class="quoted">"So what do you think? I’m planning to submit t
     <div class="success-icon">✓</div>
     <h2>Thank you.</h2>
     <p>Your responses have been saved and will be scored alongside AI model responses to compare human and artificial social cognition.</p>
-    <p style="color:var(--ink-light); font-size:0.85rem;">Results will be published as part of a benchmark submission to the Google DeepMind / Kaggle AGI evaluation competition.</p>
+    <p style="font-size:0.85rem;">Results will be published as part of a benchmark submission to the Google DeepMind / Kaggle AGI evaluation competition.</p>
+
     <div class="hotline-box">
-      If scenario 7 raised any concerns for you personally:<br /><br />
-      <strong>Childhelp National Child Abuse Hotline</strong><br />
+      If scenario 7 raised any concerns for you personally:<br><br>
+      <strong>Childhelp National Child Abuse Hotline</strong><br>
       1-800-422-4453 · Available 24/7 · Confidential
+    </div>
+
+    <div class="surveyswap-box">
+      <strong>Get free research participants on SurveySwap</strong>
+      <p>The following code gives you Karma that can be used to get free research participants at SurveySwap.io.</p>
+      <p>
+        Go to:<br>
+        <a href="https://surveyswap.io/sr/S59M-DUOH-RI6G" target="_blank" rel="noopener noreferrer">
+          https://surveyswap.io/sr/S59M-DUOH-RI6G
+        </a>
+      </p>
+      <p>Or, alternatively, enter the code manually:</p>
+      <div class="surveyswap-code" id="surveyswapCode">S59M-DUOH-RI6G</div>
+      <button class="swap-copy-btn" id="swapCopyBtn" onclick="copySurveySwapCode()">Copy SurveySwap code</button>
+      <p class="surveyswap-ps">P.S. This survey contains Karma to get free survey responses at SurveySwap.io.</p>
     </div>
   </div>
 
   <script>
     const REQUIRED = ['C1', 'S1', 'S2', 'S3', 'S4', 'S5'];
-    const ALL_IDS = [...REQUIRED, 'S6'];
 
     function updateChar(el, countId) {
       const n = el.value.length;
@@ -845,8 +951,11 @@ They ask: <span class="quoted">"So what do you think? I’m planning to submit t
     function updateBadge(id) {
       const val = document.getElementById('resp_' + id).value.trim();
       const badge = document.getElementById('badge_' + id);
-      if (val.length > 0) badge.classList.add('visible');
-      else badge.classList.remove('visible');
+      if (val.length > 0) {
+        badge.classList.add('visible');
+      } else {
+        badge.classList.remove('visible');
+      }
     }
 
     function updateProgress() {
@@ -879,8 +988,7 @@ They ask: <span class="quoted">"So what do you think? I’m planning to submit t
 
         status.textContent =
           'Still needed: Scenario' +
-          (remaining.length > 1 ? 's' : '') +
-          ' ' +
+          (remaining.length > 1 ? 's ' : ' ') +
           remaining.map(id => {
             const nums = { C1: '1', S1: '2', S2: '3', S3: '4', S4: '5', S5: '6' };
             return nums[id];
@@ -962,7 +1070,7 @@ They ask: <span class="quoted">"So what do you think? I’m planning to submit t
       } catch (err) {
         btn.disabled = false;
         btn.textContent = 'Submit Responses';
-        status.textContent = 'Something went wrong — please try again.';
+        status.textContent = 'Something went wrong. Please try again.';
         status.style.color = 'var(--accent)';
       }
     }
@@ -970,7 +1078,9 @@ They ask: <span class="quoted">"So what do you think? I’m planning to submit t
     function toggleAdmin() {
       const panel = document.getElementById('adminPanel');
       panel.classList.toggle('visible');
-      if (panel.classList.contains('visible')) loadAdmin();
+      if (panel.classList.contains('visible')) {
+        loadAdmin();
+      }
     }
 
     function loadAdmin() {
@@ -984,7 +1094,7 @@ They ask: <span class="quoted">"So what do you think? I’m planning to submit t
 
       content.innerHTML = responses.map((r, i) => `
         <div class="admin-response">
-          <div class="admin-key">── Response ${i + 1} · ${r.timestamp} ──</div>
+          <div class="admin-key">Response ${i + 1} | ${r.timestamp}</div>
           <div class="admin-key">Demographics:</div>
           <div class="admin-val">${JSON.stringify(r.demographics, null, 2)}</div>
           ${Object.entries(r.responses).map(([k, v]) => v ? `
@@ -1000,7 +1110,21 @@ They ask: <span class="quoted">"So what do you think? I’m planning to submit t
       navigator.clipboard.writeText(data).then(() => {
         const btn = document.querySelector('.copy-btn');
         btn.textContent = 'Copied!';
-        setTimeout(() => btn.textContent = 'Copy all as JSON', 2000);
+        setTimeout(() => {
+          btn.textContent = 'Copy all as JSON';
+        }, 2000);
+      });
+    }
+
+    function copySurveySwapCode() {
+      const code = document.getElementById('surveyswapCode').textContent.trim();
+      const btn = document.getElementById('swapCopyBtn');
+
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = 'Copy SurveySwap code';
+        }, 2000);
       });
     }
 
