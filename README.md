@@ -7,15 +7,17 @@ This survey is part of the Social Friction Bench benchmark, submitted to the Goo
 
 Responses are used to measure how humans navigate high-stakes social situations — grief, domestic violence warning signs, addiction relapse, workplace feedback, and child abuse disclosure — compared to frontier AI models.
 
-## How it works
-- 7 scenarios of increasing social complexity
-- Anonymous responses
-- Takes ~10 minutes
-- Results scored using the same rubric applied to AI models
+## Dataset
 
-## Live survey
-(https://surveysoc.netlify.app/?fbclid=IwY2xjawQm9XZleHRuA2FlbQIxMABicmlkETFsbHY5Ulc1T09NQ0N3RFNWc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHhklXksJIRaCgkHdZa3bQ9p2kG9XnyvgyPyROehMnJTbLiAOCcRNmo-X9C32_aem_30hCFjX8vBnIITd89_Q4yw)
+Human baseline data collected via anonymous public survey.
 
-## Part of
-Social Friction Bench — a benchmark for structurally informed social cognition in LLMs.
-Submitted to: kaggle.com/competitions/kaggle-measuring-agi
+| File | Description |
+|---|---|
+| `data/social_friction_bench_human_baseline_raw.xlsx` | Raw survey export (N=100) |
+| `data/social friction bench human baseline_v2.xlsx` | Cleaned dataset (standardized demographics) |
+
+Collection period: March 18 – April 3, 2026  
+N = 100 participants  
+Demographics: ages 18–55+, fields including healthcare/social work, law/legal, education, and technology
+
+...
