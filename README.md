@@ -14,7 +14,7 @@ Human baseline data collected via anonymous public survey at https://surveysoc.n
 | File | Description |
 |---|---|
 | `data/social_friction_bench_human_baseline_raw.xlsx` | Raw survey export (N=100) |
-| `data/social friction bench human baseline_v2.xlsx` | Cleaned dataset (standardized demographics) |
+| `data/social friction bench human baseline_social friction bench human baseline_clean.xlsx` | Cleaned dataset (standardized demographics) |
 
 Collection period: March 18 – April 3, 2026  
 N = 100 participants  
