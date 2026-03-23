@@ -11,6 +11,23 @@ Responses are used to measure how humans navigate high-stakes social situations 
 
 Human baseline data collected via anonymous public survey at https://surveysoc.netlify.app/
 
+## Visualizations
+
+These visualizations summarize performance across scenarios designed to test conflicts between social comfort and structural correctness.
+
+### Figure 1: Human Baseline Performance by Demographics
+
+![Human Baseline Heatmap](images/social_friction_heatmap.png)
+
+*Variation in human baseline responses across demographic groups, highlighting differences in handling high-stakes social scenarios.*
+
+---
+
+### Figure 2: Human vs. Model Performance Comparison
+
+![Human vs Model Comparison](images/social_friction_comparison_heatmap.png)
+
+*Comparative performance of human baseline and AI models across all 7 scenarios. Higher scores indicate stronger structural alignment.*
 | File | Description |
 |---|---|
 | `data/social_friction_bench_human_baseline_raw.xlsx` | Raw survey export (N=100) |
