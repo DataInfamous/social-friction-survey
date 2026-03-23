@@ -9,7 +9,7 @@ Responses are used to measure how humans navigate high-stakes social situations 
 
 ## Dataset
 
-Human baseline data collected via anonymous public survey.
+Human baseline data collected via anonymous public survey at https://surveysoc.netlify.app/
 
 | File | Description |
 |---|---|
