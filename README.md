@@ -11,6 +11,8 @@ Responses are used to measure how humans navigate high-stakes social situations 
 
 Human baseline data collected via anonymous public survey at https://surveysoc.netlify.app/
 
+N=98 (filtered from raw submissions; incomplete or invalid responses excluded to ensure scoring reliability).
+
 ## Visualizations
 
 These visualizations summarize performance across scenarios designed to test conflicts between social comfort and structural correctness.
@@ -19,7 +21,7 @@ These visualizations summarize performance across scenarios designed to test con
 
 ![Human Baseline Heatmap](images/social_friction_heatmap.png)
 
-*Variation in human baseline responses across demographic groups, highlighting differences in handling high-stakes social scenarios.*
+*Variation in human baseline responses across gender and education groups, highlighting differences in handling high-stakes social scenarios. Scale: 0.0–2.0.*
 
 ---
 
@@ -27,15 +29,16 @@ These visualizations summarize performance across scenarios designed to test con
 
 ![Human vs Model Comparison](images/social_friction_comparison_heatmap.png)
 
-*Comparative performance of human baseline and AI models across all 7 scenarios. Higher scores indicate stronger structural alignment.*
+*Comparative performance of human baseline and AI models (Claude Opus 4.6, Claude Sonnet 4.6, Gemini 2.5 Flash, Qwen 3 Next 80B, DeepSeek-R1, Gemma 3 27B) across all 7 scenarios. Higher scores indicate stronger structural alignment.*
+
+## Files
+
 | File | Description |
 |---|---|
-| `data/social_friction_bench_human_baseline_raw.xlsx` | Raw survey export (N=100) |
-| `data/social_friction_bench_human_baseline_clean.xlsx` | Cleaned dataset (standardized demographics) |
+| `data/social_friction_bench_human_baseline_raw.xlsx` | Raw survey export (102 submissions) |
+| `data/social_friction_bench_human_baseline_clean.xlsx` | Cleaned dataset (N=98, standardized demographics) |
 
 Collection period: March 18 – April 3, 2026  
-N = 100 participants  
-Demographics: ages 18–55+, fields including healthcare/social work, law/legal, education, and technology
-
-...
-
+N = 98 (filtered)  
+Demographics: ages 18–55+, fields including healthcare/social work, law/legal, education, and technology  
+License: CC0 Public Domain
