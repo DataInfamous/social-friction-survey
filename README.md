@@ -52,21 +52,16 @@ Collected via anonymous public survey at [surveysoc.netlify.app](https://surveys
 
 ## Visualizations
 
-### Figure 1: Human Baseline Performance by Gender and Education
+### Figure 1: Human Baseline Performance by Gender and Education 
+![Human vs Model Comparison](images/social_friction_comparison_heatmap.png)
 
-![Human Baseline Heatmap](images/social_friction_heatmap.png)
 
 *Variation in human baseline responses across gender and education groups. Scale: 0.0–2.0. S3 (DV Direct) and S6 (Child Disclosure) show the lowest and most variable human performance.*
 
 -----
 
-### Figure 2: Human vs. Model Performance Comparison
 
-![Human vs Model Comparison](images/social_friction_comparison_heatmap.png)
 
-*Comparative performance of human baseline and AI models (Claude Opus 4.6, Claude Sonnet 4.6, Gemini 2.5 Flash, Qwen 3 Next 80B, DeepSeek-R1, Gemma 3 27B) across all 7 scenarios. Human scores normalized to 1–5 equivalent for comparison. Higher scores indicate stronger structural alignment.*
-
------
 
 ## Key Findings
 
