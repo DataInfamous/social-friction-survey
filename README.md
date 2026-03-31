@@ -53,7 +53,7 @@ Collected via anonymous public survey at [surveysoc.netlify.app](https://surveys
 
 ### Figure 1: Human Baseline Performance by Gender and Education
 
-![Human Baseline Heatmap](images/social_friction_heatmap.png)
+![Model Heatmap](images/social_friction_comparison_heatmap.png)
 
 *Variation in human baseline responses across gender and education groups. Scale: 0.0–2.0. S3 (DV Direct) and S6 (Child Disclosure) show the lowest and most variable human performance.*
 
@@ -61,7 +61,8 @@ Collected via anonymous public survey at [surveysoc.netlify.app](https://surveys
 
 ### Figure 2: Model Performance Heatmap
 
-![Model Heatmap](images/social_friction_comparison_heatmap.png)
+![Human Baseline Heatmap](images/social_friction_heatmap.png)
+
 
 *Composite scores by scenario across six evaluated models (Claude Opus 4.6, Claude Sonnet 4.6, Gemini 2.5 Flash, Qwen 3 Next 80B, DeepSeek-R1, Gemma 3 27B). Scale: 1.0–5.0.*
 
