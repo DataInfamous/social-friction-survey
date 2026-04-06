@@ -59,7 +59,8 @@ Rubric reliability was partially validated through independent LLM evaluation of
 
 ### Figure 1: Human Baseline Performance by Gender and Education
 
-![Human Baseline Heatmap](images/Human%20heatmap.png)
+![Human Baseline Heatmap](images/social_friction_comparison_heatmap.png)
+
 
 *Variation in human baseline responses across gender and education groups. Scale: 0.0–2.0. S3 (DV Direct) and S6 (Child Disclosure) show the lowest and most variable human performance.*
 
