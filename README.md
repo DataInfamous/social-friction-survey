@@ -88,7 +88,7 @@ Composite scores by scenario across six evaluated models (Claude Opus 4.6, Claud
 
 **Figure 3: Human vs. Model Performance by Scenario**
 
-![Scatter Plot](images/human_vs_model_scatter.png)
+![Scatter Plot](images/IMG_6689.png)
 
 Each point represents one scenario. S3 and S6 cluster bottom-left — hard for both humans and models. C1 sits top-right — easy for both.
 
