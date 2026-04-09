@@ -10,7 +10,7 @@ Submitted to the Google DeepMind / Kaggle “Measuring Progress Toward AGI” co
 
 Social Friction Bench tests **structurally informed social cognition** — the ability to override social norms when safety requires it. Unlike benchmarks that test belief inference, this benchmark tests what a model (or person) actually does when politeness conflicts with safety.
 
-This repository contains the human baseline component. N=129 participants responded to the same seven scenarios evaluated across six AI models, scored using identical rubrics. The human data enables direct human-model comparison and surfaces where failure is shared, where it diverges, and what drives it.
+This repository contains the human baseline component. N=143 participants responded to the same seven scenarios evaluated across six AI models, scored using identical rubrics. The human data enables direct human-model comparison and surfaces where failure is shared, where it diverges, and what drives it.
 
 -----
 
@@ -36,9 +36,9 @@ Correct responses for each scenario are grounded in established professional sta
 
 Collected via anonymous public survey at [surveysoc.netlify.app](https://surveysoc.netlify.app)
 
-**Collection period:** March 18 – April 6, 2026  
+**Collection period:** March 18 – ongoing  
 **Submitted writeup references:** N=129 (April 6 export, three submissions excluded: one all-identical response, one all-punctuation response, one incomplete submission missing S6 and demographic data)  
-**Current dataset:** Collection is ongoing. As of April 8, 2026 the dataset has grown to N=146.  
+**Current dataset:** As of April 8, 2026 the dataset has grown to N=143.  
 **Demographics:** Ages 18–55+, fields including healthcare/social work, law/legal, education, and technology. Respondents from at least 6 countries including the United States, India, United Kingdom, Australia, Portugal, and Indonesia.  
 **Scoring scale:** 0–2 per scenario, using identical rubrics applied to AI models  
 **License:** CC0 Public Domain
@@ -59,7 +59,7 @@ Rubric reliability was partially validated through independent LLM evaluation of
 |S5 Addiction   |123|1.30|0.54|0.5|2.0|
 |S6 Child       |86 |1.18|0.35|0.5|2.0|
 
-*Scale: 0–2. S6 N is lower due to the optional flag on that scenario. Scores computed using rubric v1 scoring script.*
+*Scale: 0–2. S6 N is lower due to the optional flag on that scenario. Scores computed using rubric v1 scoring script. Statistics reflect the March 30 export; updated figures will be published post-competition.*
 
 -----
 
@@ -67,8 +67,8 @@ Rubric reliability was partially validated through independent LLM evaluation of
 
 |File                                                  |Description                                       |
 |------------------------------------------------------|--------------------------------------------------|
-|`data/social_friction_bench_human_baseline_raw.xlsx`  |Raw survey export (132 submissions)               |
-|`data/social_friction_bench_human_baseline_clean.xlsx`|Cleaned dataset (N=129, standardized demographics)|
+|`data/social_friction_bench_human_baseline_raw.xlsx`  |Raw survey export (146 submissions)               |
+|`data/social_friction_bench_human_baseline_clean.xlsx`|Cleaned dataset (N=143, standardized demographics)|
 
 -----
 
@@ -78,19 +78,19 @@ Rubric reliability was partially validated through independent LLM evaluation of
 
 ![Human Baseline Heatmap](images/social_friction_comparison_heatmap.png)
 
-Variation in human baseline responses across gender and education groups. Scale: 0.0–2.0. S3 (DV Direct) and S6 (Child Disclosure) show the lowest and most variable human performance.
+*Variation in human baseline responses across gender and education groups. Scale: 0.0–2.0. S3 (DV Direct) and S6 (Child Disclosure) show the lowest and most variable human performance.*
 
 **Figure 2: Model Performance Heatmap**
 
-![Model Heatmap](images/model%20heatmap.png)
+![Model Heatmap](images/model_heatmap.png)
 
-Composite scores by scenario across six evaluated models (Claude Opus 4.6, Claude Sonnet 4.6, Gemini 2.5 Flash, Qwen 3 Next 80B, DeepSeek-R1, Gemma 3 27B). Scale: 1.0–5.0.
+*Composite scores by scenario across six evaluated models (Claude Opus 4.6, Claude Sonnet 4.6, Gemini 2.5 Flash, Qwen 3 Next 80B, DeepSeek-R1, Gemma 3 27B). Scale: 1.0–5.0.*
 
 **Figure 3: Human vs. Model Performance by Scenario**
 
 ![Scatter Plot](images/IMG_6689.png)
 
-Each point represents one scenario. S3 and S6 cluster bottom-left — hard for both humans and models. C1 sits top-right — easy for both.
+*Each point represents one scenario. S3 and S6 cluster bottom-left — hard for both humans and models. C1 sits top-right — easy for both.*
 
 -----
 
