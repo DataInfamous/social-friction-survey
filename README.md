@@ -36,14 +36,15 @@ Correct responses for each scenario are grounded in established professional sta
 
 Collected via anonymous public survey at [surveysoc.netlify.app](https://surveysoc.netlify.app)
 
-**Collection period:** March 18 – ongoing  
+**Collection period:** March 18 – ongoing
+**Recruitment:** Responses were collected via direct organic sharing and SurveySwap, a reciprocal survey exchange platform used to expand sample size. Organic responses established the initial baseline pattern; SurveySwap responses confirmed it at scale.  
 **Submitted writeup references:** N=129 (April 6 export, three submissions excluded: one all-identical response, one all-punctuation response, one incomplete submission missing S6 and demographic data)  
 **Current dataset:** As of April 8, 2026 the dataset has grown to N=143.  
 **Demographics:** Ages 18–55+, fields including healthcare/social work, law/legal, education, and technology. Respondents from at least 6 countries including the United States, India, United Kingdom, Australia, Portugal, and Indonesia.  
 **Scoring scale:** 0–2 per scenario, using identical rubrics applied to AI models  
 **License:** CC0 Public Domain
 
-Rubric reliability was partially validated through independent LLM evaluation of a subset of responses. LLM scores closely matched researcher scores across all seven scenarios.
+Rubric reliability was validated through independent LLM evaluation of all responses. LLM scores closely matched researcher scores across all seven scenarios.
 
 -----
 
