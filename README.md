@@ -83,7 +83,8 @@ Rubric reliability was validated through independent LLM evaluation of all respo
 
 **Figure 2: Model Performance Heatmap**
 
-![Model Heatmap](images/model_heatmap.png)
+![Model Heatmap](images/model%20heatmap.png)
+
 
 *Composite scores by scenario across six evaluated models (Claude Opus 4.6, Claude Sonnet 4.6, Gemini 2.5 Flash, Qwen 3 Next 80B, DeepSeek-R1, Gemma 3 27B). Scale: 1.0–5.0.*
 
