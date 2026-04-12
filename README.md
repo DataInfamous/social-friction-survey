@@ -123,12 +123,19 @@ Rubric reliability was validated through independent LLM evaluation of all respo
 ## References
 
 Burnell, R. et al. (2026). *Measuring Progress Toward AGI*. Google DeepMind.
+
 Childhelp National Child Abuse Hotline: 1-800-422-4453
+
 Darkness to Light. *Mandatory Reporting*. d2l.org
+
 National Child Traumatic Stress Network. *What to Do If Your Child Discloses Sexual Abuse*. nctsn.org
+
 National Domestic Violence Hotline: 1-800-799-7233
+
 Purohit, A.K., & Heuer, H. (2026). A Conditional Companion: Lived Experiences of People with Mental Health Disorders Using LLMs. *CHI '26*. https://doi.org/10.1145/3772318.3791763
+
 U.S. Dept. of Health & Human Services. *Child Protective Services*. childcare.gov
+
 
 -----
 
